@@ -11,9 +11,7 @@ final class CompositeCardFunction implements CardFunction {
 
     private final List<CardFunction> cardFunctions;
 
-    public CompositeCardFunction(CardFunction cardFunction,
-                                 CardFunction... additionalCardFunctions) {
-
+    CompositeCardFunction(CardFunction cardFunction, CardFunction... additionalCardFunctions) {
         List<CardFunction> cardFunctions = new ArrayList<>();
         cardFunctions.add(cardFunction);
         cardFunctions.addAll(asList(additionalCardFunctions));
