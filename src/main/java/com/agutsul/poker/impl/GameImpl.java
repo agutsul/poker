@@ -5,6 +5,7 @@ import com.agutsul.poker.Game;
 import com.agutsul.poker.Player;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
@@ -56,9 +57,9 @@ public final class GameImpl implements Game {
     }
 
     @Override
-    public Player getWinner() {
-        if (player1.getHand() == null && player2.getHand() == null) {
-            return null;
+    public Optional<Player> getWinner() {
+        if (player1.getHand().isEmpty() && player2.getHand().isEmpty()) {
+            return Optional.empty();
         }
 
         int comparison = player1.compareTo(player2);
@@ -66,7 +67,7 @@ public final class GameImpl implements Game {
             throw new IllegalStateException("Unknown winner");
         }
 
-        return comparison > 0 ? player1 : player2;
+        return Optional.of(comparison > 0 ? player1 : player2);
     }
 
     @Override
@@ -81,18 +82,18 @@ public final class GameImpl implements Game {
         sb.append("Game#").append(getId());
 
         sb.append("\t").append(player1);
-        if (player1.getHand() != null) {
-            sb.append(" '").append(player1.getHand()).append("'");
+        if (player1.getHand().isPresent()) {
+            sb.append(" '").append(player1.getHand().get()).append("'");
         }
 
         sb.append("\t").append(player2);
-        if (player2.getHand() != null) {
-            sb.append(" '").append(player2.getHand()).append("'\t");
+        if (player2.getHand().isPresent()) {
+            sb.append(" '").append(player2.getHand().get()).append("'\t");
         }
 
-        Player winner = getWinner();
-        if (winner != null) {
-            sb.append("\tWinner: ").append(winner.getName());
+        Optional<Player> winner = getWinner();
+        if (winner.isPresent()) {
+            sb.append("\tWinner: ").append(winner.get().getName());
         }
 
         return sb.toString();

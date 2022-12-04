@@ -5,6 +5,8 @@ import com.agutsul.poker.Hand;
 import com.agutsul.poker.Player;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
@@ -55,11 +57,13 @@ class GameImplTest {
 
     @Test
     void testGameRunWithUnknownWinner() {
+        Optional<Hand> hand = Optional.of(mock(Hand.class));
+
         Player player1 = mock(Player.class);
-        when(player1.getHand()).thenReturn(mock(Hand.class));
+        when(player1.getHand()).thenReturn(hand);
 
         Player player2 = mock(Player.class);
-        when(player2.getHand()).thenReturn(mock(Hand.class));
+        when(player2.getHand()).thenReturn(hand);
 
         when(player1.compareTo(eq(player2))).thenReturn(0);
 
@@ -76,21 +80,22 @@ class GameImplTest {
 
     @Test
     void testGameRunWithWinner() {
+        Optional<Hand> hand = Optional.of(mock(Hand.class));
+
         Player player1 = mock(Player.class);
-        when(player1.getHand()).thenReturn(mock(Hand.class));
+        when(player1.getHand()).thenReturn(hand);
 
         Player player2 = mock(Player.class);
-        when(player2.getHand()).thenReturn(mock(Hand.class));
+        when(player2.getHand()).thenReturn(hand);
 
         when(player1.compareTo(eq(player2))).thenReturn(1);
 
         Game game = new GameImpl(1, emptyList(), player1, player2);
         game.run();
 
-        Player winner = game.getWinner();
-        assertNotNull(winner);
+        Optional<Player> winner = game.getWinner();
+        assertNotNull(winner.get());
 
-        assertEquals(player1, winner);
+        assertEquals(player1, winner.get());
     }
-
 }

@@ -16,7 +16,7 @@ public final class PlayerImpl implements Player {
 
     private final String name;
     private final List<Card> cards;
-    private Hand hand;
+    private Optional<Hand> hand = Optional.empty();
 
     public PlayerImpl(String name, List<Card> cards) {
         this.name = name;
@@ -33,7 +33,7 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public Hand getHand() {
+    public Optional<Hand> getHand() {
         return hand;
     }
 
@@ -42,7 +42,7 @@ public final class PlayerImpl implements Player {
         for (Rule rule : Rules.values()) {
             var result = rule.evaluate(cards);
             if (result.isPresent()) {
-                this.hand = result.get();
+                this.hand = result;
                 return;
             }
         }
@@ -50,7 +50,7 @@ public final class PlayerImpl implements Player {
 
     @Override
     public int compareTo(Player player) {
-        return COMPARATOR.compare(getHand(), player.getHand());
+        return COMPARATOR.compare(hand.get(), player.getHand().get());
     }
 
     @Override

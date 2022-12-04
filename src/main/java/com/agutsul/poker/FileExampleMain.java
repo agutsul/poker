@@ -23,7 +23,7 @@ public class FileExampleMain {
             game.run();
 
             System.out.println(game);
-            winners.add(game.getWinner());
+            winners.add(game.getWinner().get());
         }
 
         Map<String, Long> stats =

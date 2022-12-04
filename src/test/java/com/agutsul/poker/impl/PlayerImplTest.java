@@ -16,7 +16,7 @@ class PlayerImplTest {
         assertNotNull(player);
         assertNotNull(player.getCards());
         assertEquals("any", player.getName());
-        assertNull(player.getHand());
+        assertTrue(player.getHand().isEmpty());
     }
 
     @Test
@@ -68,11 +68,11 @@ class PlayerImplTest {
     void testPlayerPlaying() {
         Player player = new PlayerImpl("any", createCards());
 
-        assertNull(player.getHand());
+        assertTrue(player.getHand().isEmpty());
         player.play();
 
-        assertNotNull(player.getHand());
-        assertEquals(Rules.HIGH_CARD, player.getHand().getRule());
+        assertTrue(player.getHand().isPresent());
+        assertEquals(Rules.HIGH_CARD, player.getHand().get().getRule());
     }
 
     private List<Card> createCards() {
