@@ -6,6 +6,7 @@ import com.agutsul.poker.Player;
 import com.agutsul.poker.Rule;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.Comparator.reverseOrder;
@@ -39,13 +40,11 @@ public final class PlayerImpl implements Player {
 
     @Override
     public void play() {
-        for (Rule rule : Rules.values()) {
-            var result = rule.evaluate(cards);
-            if (result.isPresent()) {
-                this.hand = result;
-                return;
-            }
-        }
+        this.hand = Stream.of(Rules.values())
+                .map(rule -> rule.evaluate(cards))
+                .filter(Optional::isPresent)
+                .findFirst()
+                .get();
     }
 
     @Override
