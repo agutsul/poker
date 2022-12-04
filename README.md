@@ -19,3 +19,5 @@ Code is covered with tests. For some specific cases Mockito was used.
 Apache Commons were used for utility operations too.
 Maven is used as build tool.
   
+Original task:
+https://projecteuler.net/problem=54
