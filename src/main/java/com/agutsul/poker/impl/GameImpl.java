@@ -17,8 +17,6 @@ public final class GameImpl implements Game {
 
     private final List<Card> cards;
 
-    private Player winner;
-
     public GameImpl(int id, String string) {
         this(id, parseCards(string));
     }
@@ -53,26 +51,28 @@ public final class GameImpl implements Game {
     }
 
     @Override
-    public Player getWinner() {
-        return winner;
-    }
-
-    @Override
     public List<Card> getCards() {
         return cards;
     }
 
     @Override
-    public void run() {
-        player1.play();
-        player2.play();
+    public Player getWinner() {
+        if (player1.getHand() == null && player2.getHand() == null) {
+            return null;
+        }
 
         int comparison = player1.compareTo(player2);
         if (comparison == 0) {
             throw new IllegalStateException("Unknown winner");
         }
 
-        winner = comparison > 0 ? player1 : player2;
+        return comparison > 0 ? player1 : player2;
+    }
+
+    @Override
+    public void run() {
+        player1.play();
+        player2.play();
     }
 
     @Override
@@ -90,6 +90,7 @@ public final class GameImpl implements Game {
             sb.append(" '").append(player2.getHand()).append("'\t");
         }
 
+        Player winner = getWinner();
         if (winner != null) {
             sb.append("\tWinner: ").append(winner.getName());
         }
