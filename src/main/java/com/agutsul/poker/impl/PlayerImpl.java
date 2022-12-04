@@ -3,7 +3,6 @@ package com.agutsul.poker.impl;
 import com.agutsul.poker.Card;
 import com.agutsul.poker.Hand;
 import com.agutsul.poker.Player;
-import com.agutsul.poker.Rule;
 
 import java.util.*;
 import java.util.stream.Stream;
