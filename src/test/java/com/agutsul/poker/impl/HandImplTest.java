@@ -11,12 +11,14 @@ class HandImplTest {
     @Test
     void testHandEqualsSameHand() {
         Hand hand = new HandImpl(Rules.ONE_PAIR,
-                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
-                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
-                ),
                 List.of(new CardImpl(Ranks.EIGHT, Suits.SPADES),
                         new CardImpl(Ranks.QUEEN, Suits.SPADES),
-                        new CardImpl(Ranks.TWO, Suits.HEARTS)
+                        new CardImpl(Ranks.TWO, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
+                ),
+                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
                 )
         );
 
@@ -27,12 +29,14 @@ class HandImplTest {
     @Test
     void testHandEqualsOtherObject() {
         Hand hand = new HandImpl(Rules.ONE_PAIR,
-                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
-                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
-                ),
                 List.of(new CardImpl(Ranks.EIGHT, Suits.SPADES),
                         new CardImpl(Ranks.QUEEN, Suits.SPADES),
-                        new CardImpl(Ranks.TWO, Suits.HEARTS)
+                        new CardImpl(Ranks.TWO, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
+                ),
+                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
                 )
         );
 
@@ -42,22 +46,26 @@ class HandImplTest {
     @Test
     void testHandEqualsWithDifferentHand() {
         Hand hand1 = new HandImpl(Rules.ONE_PAIR,
-                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
-                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
-                ),
                 List.of(new CardImpl(Ranks.EIGHT, Suits.SPADES),
                         new CardImpl(Ranks.QUEEN, Suits.SPADES),
-                        new CardImpl(Ranks.TWO, Suits.HEARTS)
+                        new CardImpl(Ranks.TWO, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
+                ),
+                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
                 )
         );
 
         Hand hand2 = new HandImpl(Rules.ONE_PAIR,
-                List.of(new CardImpl(Ranks.FIVE, Suits.HEARTS),
-                        new CardImpl(Ranks.FIVE, Suits.DIAMONDS)
-                ),
                 List.of(new CardImpl(Ranks.TWO, Suits.SPADES),
                         new CardImpl(Ranks.THREE, Suits.SPADES),
-                        new CardImpl(Ranks.ACE, Suits.HEARTS)
+                        new CardImpl(Ranks.ACE, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.DIAMONDS)
+                ),
+                List.of(new CardImpl(Ranks.FIVE, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.DIAMONDS)
                 )
         );
 
@@ -67,12 +75,14 @@ class HandImplTest {
     @Test
     void testToString() {
         Hand hand = new HandImpl(Rules.ONE_PAIR,
-                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
-                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
-                ),
                 List.of(new CardImpl(Ranks.EIGHT, Suits.SPADES),
                         new CardImpl(Ranks.QUEEN, Suits.SPADES),
-                        new CardImpl(Ranks.TWO, Suits.HEARTS)
+                        new CardImpl(Ranks.TWO, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
+                ),
+                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
                 )
         );
 
@@ -82,16 +92,17 @@ class HandImplTest {
     @Test
     void testHandCompareTo() {
         Hand hand = new HandImpl(Rules.ONE_PAIR,
-                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
-                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
-                ),
                 List.of(new CardImpl(Ranks.EIGHT, Suits.SPADES),
                         new CardImpl(Ranks.QUEEN, Suits.SPADES),
-                        new CardImpl(Ranks.TWO, Suits.HEARTS)
+                        new CardImpl(Ranks.TWO, Suits.HEARTS),
+                        new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
+                ),
+                List.of(new CardImpl(Ranks.FIVE, Suits.SPADES),
+                        new CardImpl(Ranks.FIVE, Suits.CLUBS)
                 )
         );
 
         assertEquals(0, hand.compareTo(hand));
-        assertEquals(3, hand.getNonMatchedCards().size());
     }
 }

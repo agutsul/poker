@@ -7,5 +7,5 @@ public interface Hand extends Comparable<Hand> {
 
     Collection<Card> getMatchedCards();
 
-    Collection<Card> getNonMatchedCards();
+    Collection<Card> getCards();
 }

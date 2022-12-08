@@ -39,12 +39,7 @@ public enum Rules implements Rule {
             return Optional.empty();
         }
 
-        List<Card> nonMatchedCards = cards.stream()
-                .filter(card -> !matchedCards.contains(card))
-                .sorted(reverseOrder())
-                .collect(toList());
-
-        return Optional.of(new HandImpl(this, matchedCards, nonMatchedCards));
+        return Optional.of(new HandImpl(this, cards, matchedCards));
     }
 
     @Override

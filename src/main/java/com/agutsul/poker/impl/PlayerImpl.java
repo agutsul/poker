@@ -12,8 +12,6 @@ import static java.util.Comparator.reverseOrder;
 
 public final class PlayerImpl implements Player {
 
-    private static final HandComparator COMPARATOR = new HandComparator();
-
     private final String name;
     private final List<Card> cards;
     private Optional<Hand> hand = Optional.empty();
@@ -48,7 +46,7 @@ public final class PlayerImpl implements Player {
 
     @Override
     public int compareTo(Player player) {
-        return COMPARATOR.compare(hand.get(), player.getHand().get());
+        return hand.get().compareTo(player.getHand().get());
     }
 
     @Override
