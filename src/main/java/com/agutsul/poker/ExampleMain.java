@@ -18,9 +18,9 @@ public class ExampleMain {
 
         for (int i = 0; i < gameCards.size(); i++) {
             Game game = new GameImpl(i + 1, gameCards.get(i));
-            game.run();
+            Player winner = game.run();
 
-            System.out.println(game);
+            System.out.println(game + "\tWinner: " + winner.getName() + " => " + winner.getHand());
         }
     }
 }

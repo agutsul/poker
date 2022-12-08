@@ -20,10 +20,10 @@ public class FileExampleMain {
         List<Player> winners = new ArrayList<>();
         for (int i = 0; i < lines.size(); i++) {
             Game game = new GameImpl(i + 1, lines.get(i));
-            game.run();
+            Player winner = game.run();
 
-            System.out.println(game);
-            winners.add(game.getWinner().get());
+            System.out.println(game + "\tWinner: " + winner.getName() + " => " + winner.getHand());
+            winners.add(winner);
         }
 
         Map<String, Long> stats =

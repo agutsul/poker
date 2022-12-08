@@ -14,7 +14,7 @@ public final class PlayerImpl implements Player {
 
     private final String name;
     private final List<Card> cards;
-    private Optional<Hand> hand = Optional.empty();
+    private Hand hand;
 
     public PlayerImpl(String name, List<Card> cards) {
         this.name = name;
@@ -31,26 +31,26 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public Optional<Hand> getHand() {
+    public Hand getHand() {
+        if (hand != null) {
+            return hand;
+        }
+
+        this.hand = evaluateCards();
         return hand;
-    }
-
-    @Override
-    public void play() {
-        this.hand = Stream.of(Rules.values())
-                .map(rule -> rule.evaluate(cards))
-                .filter(Optional::isPresent)
-                .findFirst()
-                .get();
-    }
-
-    @Override
-    public int compareTo(Player player) {
-        return hand.get().compareTo(player.getHand().get());
     }
 
     @Override
     public String toString() {
         return String.format("%s: %s", name, cards);
+    }
+
+    private Hand evaluateCards() {
+        return Stream.of(Rules.values())
+                .map(rule -> rule.evaluate(cards))
+                .filter(Optional::isPresent)
+                .findFirst()
+                .get()
+                .get();
     }
 }

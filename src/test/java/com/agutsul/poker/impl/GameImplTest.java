@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -36,19 +37,12 @@ class GameImplTest {
         Game game = new GameImpl(123, "2H 2D 4C 5D 6S 2C 3D 2S 6S 5H");
         assertNotNull(game);
         assertEquals(123, game.getId());
-        assertNotNull(game.getPlayer1());
-        assertNotNull(game.getPlayer2());
         assertNotNull(game.getCards());
         assertEquals(10, game.getCards().size());
     }
 
     @Test
     void testGameToString() {
-        Player player1 = mock(Player.class);
-        Player player2 = mock(Player.class);
-
-        when(player1.compareTo(eq(player2))).thenReturn(1);
-
         Game game = new GameImpl(123, "2H 2D 4C 5D 6S 2C 3D 2S 6S 5H");
         assertNotNull(game);
         assertEquals("Game#123\tplayer1: [6♠, 5♦, 4♣, 2❤, 2♦]\tplayer2: [6♠, 5❤, 3♦, 2♣, 2♠]",
@@ -57,7 +51,8 @@ class GameImplTest {
 
     @Test
     void testGameRunWithUnknownWinner() {
-        Optional<Hand> hand = Optional.of(mock(Hand.class));
+        Hand hand = mock(Hand.class);
+        when(hand.compareTo(any())).thenReturn(0);
 
         Player player1 = mock(Player.class);
         when(player1.getHand()).thenReturn(hand);
@@ -65,14 +60,10 @@ class GameImplTest {
         Player player2 = mock(Player.class);
         when(player2.getHand()).thenReturn(hand);
 
-        when(player1.compareTo(eq(player2))).thenReturn(0);
-
         Game game = new GameImpl(1, emptyList(), player1, player2);
-        game.run();
-
         Throwable throwable = assertThrows(
                 IllegalStateException.class,
-                game::getWinner
+                game::run
         );
 
         assertEquals("Unknown winner", throwable.getMessage());
@@ -80,7 +71,8 @@ class GameImplTest {
 
     @Test
     void testGameRunWithWinner() {
-        Optional<Hand> hand = Optional.of(mock(Hand.class));
+        Hand hand = mock(Hand.class);
+        when(hand.compareTo(any())).thenReturn(1);
 
         Player player1 = mock(Player.class);
         when(player1.getHand()).thenReturn(hand);
@@ -88,14 +80,10 @@ class GameImplTest {
         Player player2 = mock(Player.class);
         when(player2.getHand()).thenReturn(hand);
 
-        when(player1.compareTo(eq(player2))).thenReturn(1);
-
         Game game = new GameImpl(1, emptyList(), player1, player2);
-        game.run();
+        Player winner = game.run();
 
-        Optional<Player> winner = game.getWinner();
-        assertNotNull(winner.get());
-
-        assertEquals(player1, winner.get());
+        assertNotNull(winner);
+        assertEquals(player1, winner);
     }
 }
