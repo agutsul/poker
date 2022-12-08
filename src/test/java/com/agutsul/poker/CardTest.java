@@ -1,17 +1,18 @@
-package com.agutsul.poker.impl;
+package com.agutsul.poker;
+
+import com.agutsul.poker.enums.Ranks;
+import com.agutsul.poker.enums.Suits;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.agutsul.poker.Card;
-import org.junit.jupiter.api.Test;
-
-class CardImplTest {
+class CardTest {
 
     @Test
     void testCardCreationWithNullRank() {
         assertThrows(
                 NullPointerException.class,
-                () -> new CardImpl(null, Suits.CLUBS)
+                () -> new Card(null, Suits.CLUBS)
         );
     }
 
@@ -19,23 +20,23 @@ class CardImplTest {
     void testCardCreationWithNullSuit() {
         assertThrows(
                 NullPointerException.class,
-                () -> new CardImpl(Ranks.KING, null)
+                () -> new Card(Ranks.KING, null)
         );
     }
 
     @Test
     void testCardCreationWithCode() {
-        Card card = new CardImpl("2D");
+        Card card = new Card("2D");
         assertNotNull(card);
         assertEquals(Ranks.TWO, card.getRank());
         assertEquals(Suits.DIAMONDS, card.getSuit());
 
-        Card card2 = new CardImpl("TC");
+        Card card2 = new Card("TC");
         assertNotNull(card2);
         assertEquals(Ranks.TEN, card2.getRank());
         assertEquals(Suits.CLUBS, card2.getSuit());
 
-        Card card3 = new CardImpl("AH");
+        Card card3 = new Card("AH");
         assertNotNull(card3);
         assertEquals(Ranks.ACE, card3.getRank());
         assertEquals(Suits.HEARTS, card3.getSuit());
@@ -45,7 +46,7 @@ class CardImplTest {
     void testCardCreationWithNullCode() {
         assertThrows(
                 NullPointerException.class,
-                () -> new CardImpl(null)
+                () -> new Card(null)
         );
     }
 
@@ -53,67 +54,67 @@ class CardImplTest {
     void testCardCreationWithIncorrectCode() {
         assertThrows(
                 NullPointerException.class,
-                () -> new CardImpl("K2")
+                () -> new Card("K2")
         );
 
         assertThrows(
                 StringIndexOutOfBoundsException.class,
-                () -> new CardImpl("Z")
+                () -> new Card("Z")
         );
     }
 
     @Test
     void testCardToString() {
-        Card card1 = new CardImpl(Ranks.ACE, Suits.DIAMONDS);
+        Card card1 = new Card(Ranks.ACE, Suits.DIAMONDS);
         assertEquals("A♦", card1.toString());
 
-        Card card2 = new CardImpl(Ranks.TEN, Suits.CLUBS);
+        Card card2 = new Card(Ranks.TEN, Suits.CLUBS);
         assertEquals("T♣", card2.toString());
 
-        Card card3 = new CardImpl(Ranks.TWO, Suits.SPADES);
+        Card card3 = new Card(Ranks.TWO, Suits.SPADES);
         assertEquals("2♠", card3.toString());
 
-        Card card4 = new CardImpl(Ranks.JACK, Suits.HEARTS);
+        Card card4 = new Card(Ranks.JACK, Suits.HEARTS);
         assertEquals("J❤", card4.toString());
     }
 
     @Test
     void testCardEqualForSameCard() {
-        Card card = new CardImpl(Ranks.FIVE, Suits.HEARTS);
+        Card card = new Card(Ranks.FIVE, Suits.HEARTS);
         assertTrue(card.equals(card));
 
-        Card card2 = new CardImpl(Ranks.FIVE, Suits.HEARTS);
+        Card card2 = new Card(Ranks.FIVE, Suits.HEARTS);
         assertTrue(card.equals(card2));
     }
 
     @Test
     void testCardEqualsForDifferentCards() {
-        Card card1 = new CardImpl(Ranks.FIVE, Suits.HEARTS);
-        Card card2 = new CardImpl(Ranks.FIVE, Suits.DIAMONDS);
+        Card card1 = new Card(Ranks.FIVE, Suits.HEARTS);
+        Card card2 = new Card(Ranks.FIVE, Suits.DIAMONDS);
         assertFalse(card1.equals(card2));
     }
 
     @Test
     void testCardEqualsForDifferentObject() {
-        Card card = new CardImpl(Ranks.FIVE, Suits.HEARTS);
+        Card card = new Card(Ranks.FIVE, Suits.HEARTS);
         assertFalse(card.equals(new Object()));
     }
 
     @Test
     void testCardCompareToCard() {
-        Card card = new CardImpl(Ranks.FIVE, Suits.HEARTS);
-        Card card2 = new CardImpl(Ranks.FIVE, Suits.HEARTS);
+        Card card = new Card(Ranks.FIVE, Suits.HEARTS);
+        Card card2 = new Card(Ranks.FIVE, Suits.HEARTS);
 
         assertEquals(0, card.compareTo(card));
         assertEquals(0, card.compareTo(card2));
 
-        Card card3 = new CardImpl(Ranks.FIVE, Suits.DIAMONDS);
+        Card card3 = new Card(Ranks.FIVE, Suits.DIAMONDS);
         assertEquals(0, card.compareTo(card3));
 
-        Card card4 = new CardImpl(Ranks.FOUR, Suits.SPADES);
+        Card card4 = new Card(Ranks.FOUR, Suits.SPADES);
         assertEquals(1, card.compareTo(card4));
 
-        Card card5 = new CardImpl(Ranks.SIX, Suits.CLUBS);
+        Card card5 = new Card(Ranks.SIX, Suits.CLUBS);
         assertEquals(-1, card.compareTo(card5));
     }
 }

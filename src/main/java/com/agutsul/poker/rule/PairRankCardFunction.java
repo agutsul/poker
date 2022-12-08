@@ -1,4 +1,4 @@
-package com.agutsul.poker.impl.function;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
 
@@ -10,11 +10,11 @@ import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static java.util.Comparator.reverseOrder;
 
-public final class PairRankCardFunction extends AbstractRankCardFunction {
+final class PairRankCardFunction extends AbstractRankCardFunction {
 
     private final int expectedPairs;
 
-    public PairRankCardFunction(int expectedPairs) {
+    PairRankCardFunction(int expectedPairs) {
         super(2);
         this.expectedPairs = expectedPairs;
     }

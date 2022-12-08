@@ -1,4 +1,4 @@
-package com.agutsul.poker.impl.function;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
 import com.agutsul.poker.Suit;
@@ -11,7 +11,9 @@ import static java.util.Collections.emptyList;
 import static java.util.Comparator.reverseOrder;
 import static java.util.stream.Collectors.*;
 
-public final class SameSuitCardFunction implements CardFunction {
+final class SameSuitCardFunction implements CardFunction {
+
+    SameSuitCardFunction() {}
 
     @Override
     public Collection<Card> apply(Collection<Card> cards) {

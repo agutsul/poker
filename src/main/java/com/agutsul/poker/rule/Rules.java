@@ -1,16 +1,10 @@
-package com.agutsul.poker.impl;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
 import com.agutsul.poker.Hand;
-import com.agutsul.poker.Rule;
-import com.agutsul.poker.impl.function.*;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
-
-import static java.util.Comparator.reverseOrder;
-import static java.util.stream.Collectors.toList;
 
 public enum Rules implements Rule {
     ROYAL_FLUSH("Royal Flush",       new RoyalFlushCardFunction()) ,
@@ -39,7 +33,7 @@ public enum Rules implements Rule {
             return Optional.empty();
         }
 
-        return Optional.of(new HandImpl(this, cards, matchedCards));
+        return Optional.of(new Hand(this, cards, matchedCards));
     }
 
     @Override

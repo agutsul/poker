@@ -1,4 +1,4 @@
-package com.agutsul.poker.impl.function;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
 
@@ -8,9 +8,9 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
-public final class QuantityRankCardFunction extends AbstractRankCardFunction {
+final class QuantityRankCardFunction extends AbstractRankCardFunction {
 
-    public QuantityRankCardFunction(int expectedQuantity) {
+    QuantityRankCardFunction(int expectedQuantity) {
         super(expectedQuantity);
     }
 

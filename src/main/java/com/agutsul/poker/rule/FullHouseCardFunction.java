@@ -1,15 +1,15 @@
-package com.agutsul.poker.impl.function;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
 
 import java.util.Collection;
 import static java.util.Collections.emptyList;
 
-public final class FullHouseCardFunction implements CardFunction {
+final class FullHouseCardFunction implements CardFunction {
 
     private final CardFunction cardFunction;
 
-    public FullHouseCardFunction() {
+    FullHouseCardFunction() {
         this.cardFunction = new CompositeCardFunction(
                 new QuantityRankCardFunction(3),
                 new PairRankCardFunction(1)

@@ -1,8 +1,8 @@
-package com.agutsul.poker.impl.function;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
 import com.agutsul.poker.Rank;
-import com.agutsul.poker.impl.Ranks;
+import com.agutsul.poker.enums.Ranks;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ import static java.util.EnumSet.range;
 import static java.util.stream.Collectors.toSet;
 import static java.util.Collections.emptyList;
 
-public final class StraightRankCardFunction implements CardFunction {
+final class StraightRankCardFunction implements CardFunction {
 
     private static final List<Set<Ranks>> STRAIGHTS = List.of(
             range(Ranks.TWO,   Ranks.SIX),
@@ -27,7 +27,7 @@ public final class StraightRankCardFunction implements CardFunction {
 
     private final List<Set<Ranks>> straights;
 
-    public StraightRankCardFunction() {
+    StraightRankCardFunction() {
         this(STRAIGHTS);
     }
 

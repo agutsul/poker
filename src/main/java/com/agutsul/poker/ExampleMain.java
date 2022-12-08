@@ -1,7 +1,5 @@
 package com.agutsul.poker;
 
-import com.agutsul.poker.impl.GameImpl;
-
 import java.util.List;
 
 public class ExampleMain {
@@ -17,7 +15,7 @@ public class ExampleMain {
         );
 
         for (int i = 0; i < gameCards.size(); i++) {
-            Game game = new GameImpl(i + 1, gameCards.get(i));
+            Game game = new Game(i + 1, gameCards.get(i));
             Player winner = game.run();
 
             System.out.println(game + "\tWinner: " + winner.getName() + " => " + winner.getHand());

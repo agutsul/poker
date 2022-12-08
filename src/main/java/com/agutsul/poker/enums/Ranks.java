@@ -1,4 +1,4 @@
-package com.agutsul.poker.impl;
+package com.agutsul.poker.enums;
 
 import com.agutsul.poker.Rank;
 

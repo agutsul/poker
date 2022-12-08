@@ -1,7 +1,7 @@
-package com.agutsul.poker.impl.function;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
-import com.agutsul.poker.impl.Ranks;
+import com.agutsul.poker.enums.Ranks;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Set;
 import static java.util.EnumSet.range;
 import static java.util.Collections.emptyList;
 
-public class StraightFlushCardFunction implements CardFunction {
+class StraightFlushCardFunction implements CardFunction {
 
     private static final List<Set<Ranks>> STRAIGHTS = List.of(
             range(Ranks.TWO,   Ranks.SIX),
@@ -24,7 +24,7 @@ public class StraightFlushCardFunction implements CardFunction {
     );
     private final CardFunction cardFunction;
 
-    public StraightFlushCardFunction() {
+    StraightFlushCardFunction() {
         this(STRAIGHTS);
     }
     StraightFlushCardFunction(List<Set<Ranks>> ranks) {

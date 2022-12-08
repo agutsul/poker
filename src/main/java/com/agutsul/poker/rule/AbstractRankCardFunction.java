@@ -1,4 +1,4 @@
-package com.agutsul.poker.impl.function;
+package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
 import com.agutsul.poker.Rank;
@@ -11,7 +11,7 @@ import java.util.Set;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.*;
 
-public abstract class AbstractRankCardFunction implements CardFunction {
+abstract class AbstractRankCardFunction implements CardFunction {
 
     private final int frequency;
 
