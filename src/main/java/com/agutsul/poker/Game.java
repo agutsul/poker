@@ -44,9 +44,13 @@ public class Game {
         Hand hand1 = player1.getHand();
         Hand hand2 = player2.getHand();
 
+        if (hand1 == null || hand2 == null) {
+            throw new IllegalStateException("Unknown winner: undefined hand");
+        }
+
         int comparison = hand1.compareTo(hand2);
         if (comparison == 0) {
-            throw new IllegalStateException("Unknown winner");
+            throw new IllegalStateException("Unknown winner: same hands");
         }
 
         return comparison > 0 ? player1 : player2;

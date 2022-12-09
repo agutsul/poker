@@ -44,7 +44,7 @@ class GameTest {
     }
 
     @Test
-    void testGameRunWithUnknownWinner() {
+    void testGameRunWithUnknownWinnerWithSameHands() {
         Hand hand = mock(Hand.class);
         when(hand.compareTo(any())).thenReturn(0);
 
@@ -60,7 +60,24 @@ class GameTest {
                 game::run
         );
 
-        assertEquals("Unknown winner", throwable.getMessage());
+        assertEquals("Unknown winner: same hands", throwable.getMessage());
+    }
+
+    @Test
+    void testGameRunWithUnknownWinnerWithUndefinedHand() {
+        Player player1 = mock(Player.class);
+        when(player1.getHand()).thenReturn(null);
+
+        Player player2 = mock(Player.class);
+        when(player2.getHand()).thenReturn(null);
+
+        Game game = new Game(1, emptyList(), player1, player2);
+        Throwable throwable = assertThrows(
+                IllegalStateException.class,
+                game::run
+        );
+
+        assertEquals("Unknown winner: undefined hand", throwable.getMessage());
     }
 
     @Test
