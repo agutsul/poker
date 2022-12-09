@@ -4,7 +4,6 @@ import com.agutsul.poker.Card;
 import com.agutsul.poker.Hand;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public enum Rules implements Rule {
     ROYAL_FLUSH("Royal Flush",       new RoyalFlushCardFunction()) ,
