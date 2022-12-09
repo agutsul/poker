@@ -3,6 +3,7 @@ package com.agutsul.poker;
 import com.agutsul.poker.rule.Rules;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -14,7 +15,7 @@ public class Player {
     private final List<Card> cards;
     private Hand hand;
 
-    Player(String name, List<Card> cards) {
+    public Player(String name, List<Card> cards) {
         this.name = name;
         this.cards = cards.stream().sorted(reverseOrder()).collect(toList());
     }
@@ -32,21 +33,17 @@ public class Player {
             return hand;
         }
 
-        this.hand = evaluateCards();
+        this.hand = Stream.of(Rules.values())
+                .map(rule -> rule.evaluate(cards))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .get();
+
         return hand;
     }
 
     @Override
     public String toString() {
         return String.format("%s: %s", name, cards);
-    }
-
-    private Hand evaluateCards() {
-        return Stream.of(Rules.values())
-                .map(rule -> rule.evaluate(cards))
-                .filter(Optional::isPresent)
-                .findFirst()
-                .get()
-                .get();
     }
 }

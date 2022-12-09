@@ -27,13 +27,13 @@ public enum Rules implements Rule {
     }
 
     @Override
-    public Optional<Hand> evaluate(Collection<Card> cards) {
+    public Hand evaluate(Collection<Card> cards) {
         Collection<Card> matchedCards = function.apply(cards);
         if (matchedCards.isEmpty()) {
-            return Optional.empty();
+            return null;
         }
 
-        return Optional.of(new Hand(this, cards, matchedCards));
+        return new Hand(this, cards, matchedCards);
     }
 
     @Override
