@@ -34,6 +34,7 @@ public enum Ranks implements Rank {
     Ranks(int value) {
         this(String.valueOf(value), value);
     }
+
     Ranks(String label, int value) {
         this.label = label;
         this.value = value;

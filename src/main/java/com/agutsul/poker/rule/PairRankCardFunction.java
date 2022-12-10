@@ -12,20 +12,20 @@ import static java.util.Comparator.reverseOrder;
 
 final class PairRankCardFunction extends AbstractRankCardFunction {
 
-    private final int expectedPairs;
+    private final int pairs;
 
-    PairRankCardFunction(int expectedPairs) {
+    PairRankCardFunction(int pairs) {
         super(2);
-        this.expectedPairs = expectedPairs;
+        this.pairs = pairs;
     }
 
     @Override
     protected Collection<Card> applyMatched(List<Set<Card>> matchedFrequency) {
-        if (matchedFrequency.size() < expectedPairs) {
+        if (matchedFrequency.size() < pairs) {
             return emptyList();
         }
 
-        return matchedFrequency.subList(0, expectedPairs).stream()
+        return matchedFrequency.subList(0, pairs).stream()
                 .flatMap(Collection::stream)
                 .sorted(reverseOrder())
                 .collect(toList());

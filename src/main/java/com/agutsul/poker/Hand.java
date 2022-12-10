@@ -9,6 +9,7 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 public class Hand implements Comparable<Hand> {
+
     private static final HandComparator HAND_COMPARATOR = new HandComparator();
 
     private final Rule rule;
@@ -101,12 +102,10 @@ public class Hand implements Comparable<Hand> {
 
         private static Collection<Card> getNonMatchedCards(Collection<Card> cards,
                                                            Collection<Card> skipCards) {
-            List<Card> nonMatchedCards = cards.stream()
+            return cards.stream()
                     .filter(card -> !skipCards.contains(card))
                     .sorted(reverseOrder())
                     .collect(toList());
-
-            return nonMatchedCards;
         }
 
         private static class RuleComparator implements Comparator<Rule> {

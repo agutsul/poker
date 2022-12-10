@@ -7,6 +7,7 @@ import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.split;
 
 public class Game {
+
     private final int id;
     private final Player player1;
     private final Player player2;
@@ -35,7 +36,6 @@ public class Game {
         return id;
     }
 
-
     public List<Card> getCards() {
         return cards;
     }
@@ -58,7 +58,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return String.format("Game#%d\t%s\t%s", id, player1, player2);
+        return String.format("Game#%d\t%s\tvs\t%s", id, player1, player2);
     }
 
     private static List<Card> parseCards(String string) {

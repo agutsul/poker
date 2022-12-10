@@ -4,7 +4,6 @@ import com.agutsul.poker.rule.Rules;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import static java.util.Comparator.reverseOrder;
@@ -13,11 +12,14 @@ import static java.util.stream.Collectors.toList;
 public class Player {
     private final String name;
     private final List<Card> cards;
-    private Hand hand;
+    private final Hand hand;
 
-    public Player(String name, List<Card> cards) {
+    public Player(String name, List<Card> list) {
+        List<Card> cards = list.stream().sorted(reverseOrder()).collect(toList());
+
         this.name = name;
-        this.cards = cards.stream().sorted(reverseOrder()).collect(toList());
+        this.cards = cards;
+        this.hand = evaluate(cards);
     }
 
     public String getName() {
@@ -29,21 +31,19 @@ public class Player {
     }
 
     public Hand getHand() {
-        if (hand != null) {
-            return hand;
-        }
-
-        this.hand = Stream.of(Rules.values())
-                .map(rule -> rule.evaluate(cards))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .get();
-
         return hand;
     }
 
     @Override
     public String toString() {
-        return String.format("%s: %s", name, cards);
+        return String.format("%s: %s - %s", name, cards, hand);
+    }
+
+    private static Hand evaluate(List<Card> cards) {
+        return Stream.of(Rules.values())
+                .map(rule -> rule.evaluate(cards))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .get();
     }
 }

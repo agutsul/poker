@@ -10,8 +10,8 @@ import static java.util.stream.Collectors.toList;
 
 final class QuantityRankCardFunction extends AbstractRankCardFunction {
 
-    QuantityRankCardFunction(int expectedQuantity) {
-        super(expectedQuantity);
+    QuantityRankCardFunction(int quantity) {
+        super(quantity);
     }
 
     @Override

@@ -6,7 +6,7 @@ import com.agutsul.poker.Hand;
 import java.util.Collection;
 
 public enum Rules implements Rule {
-    ROYAL_FLUSH("Royal Flush",       new RoyalFlushCardFunction()) ,
+    ROYAL_FLUSH("Royal Flush",       new RoyalFlushCardFunction()),
     STRAIGHT_FLUSH("Straight Flush", new StraightFlushCardFunction()),
     FOUR_OF_KIND("Four Cards",       new QuantityRankCardFunction(4)),
     FULL_HOUSE("Full House",         new FullHouseCardFunction()),

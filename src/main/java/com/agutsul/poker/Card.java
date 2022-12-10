@@ -7,7 +7,8 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public class Card implements Comparable<Card> {
-    private static final RankComparator COMPARATOR = new RankComparator();
+
+    private static final RankComparator RANK_COMPARATOR = new RankComparator();
 
     private final Suit suit;
     private final Rank rank;
@@ -29,11 +30,9 @@ public class Card implements Comparable<Card> {
     public Suit getSuit() {
         return suit;
     }
-
     public Rank getRank() {
         return rank;
     }
-
     @Override
     public String toString() {
         return String.format("%s%s", rank, suit);
@@ -54,7 +53,7 @@ public class Card implements Comparable<Card> {
 
     @Override
     public int compareTo(Card card) {
-        return COMPARATOR.compare(rank, card.getRank());
+        return RANK_COMPARATOR.compare(rank, card.getRank());
     }
 
     private static class RankComparator implements Comparator<Rank> {
