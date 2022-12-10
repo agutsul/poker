@@ -1,33 +1,34 @@
 package com.agutsul.poker.rule;
 
 import com.agutsul.poker.Card;
-import com.agutsul.poker.enums.Ranks;
+import com.agutsul.poker.Rank;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.EnumSet.range;
+import static com.agutsul.poker.enums.Ranks.*;
 import static java.util.Collections.emptyList;
+import static java.util.EnumSet.range;
 
 class StraightFlushCardFunction implements CardFunction {
 
-    private static final List<Set<Ranks>> STRAIGHTS = List.of(
-            range(Ranks.TWO,   Ranks.SIX),
-            range(Ranks.THREE, Ranks.SEVEN),
-            range(Ranks.FOUR,  Ranks.EIGHT),
-            range(Ranks.FIVE,  Ranks.NINE),
-            range(Ranks.SIX,   Ranks.TEN),
-            range(Ranks.SEVEN, Ranks.JACK),
-            range(Ranks.EIGHT, Ranks.QUEEN),
-            range(Ranks.NINE,  Ranks.KING)
+    private static final List<Set<? extends Rank>> STRAIGHTS = List.of(
+            range(TWO,   SIX),
+            range(THREE, SEVEN),
+            range(FOUR,  EIGHT),
+            range(FIVE,  NINE),
+            range(SIX,   TEN),
+            range(SEVEN, JACK),
+            range(EIGHT, QUEEN),
+            range(NINE,  KING)
     );
     private final CardFunction cardFunction;
 
     StraightFlushCardFunction() {
         this(STRAIGHTS);
     }
-    StraightFlushCardFunction(List<Set<Ranks>> ranks) {
+    StraightFlushCardFunction(List<Set<? extends Rank>> ranks) {
         this.cardFunction = new CompositeCardFunction(
                 new SameSuitCardFunction(),
                 new StraightRankCardFunction(ranks)
