@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static java.util.Collections.emptyList;
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
 abstract class AbstractRankCardFunction implements CardFunction {
@@ -36,7 +37,13 @@ abstract class AbstractRankCardFunction implements CardFunction {
             return emptyList();
         }
 
-        return applyMatched(matchedFrequency);
+        Collection<Card> matchedCards = applyMatched(matchedFrequency);
+        return matchedCards.stream()
+                .sorted(
+                        comparing(Card::getRank, Card.RANK_COMPARATOR).reversed()
+                                .thenComparing(Card::getSuit, Card.SUIT_COMPARATOR)
+                )
+                .collect(toList());
     }
 
     protected abstract Collection<Card> applyMatched(List<Set<Card>> matchedFrequency);

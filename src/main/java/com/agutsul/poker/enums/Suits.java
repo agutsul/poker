@@ -41,6 +41,11 @@ public enum Suits implements Suit {
     }
 
     @Override
+    public int value() {
+        return ordinal();
+    }
+
+    @Override
     public String toString() {
         return code();
     }

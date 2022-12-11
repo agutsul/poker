@@ -14,9 +14,7 @@ public class Player {
     private final List<Card> cards;
     private final Hand hand;
 
-    public Player(String name, List<Card> list) {
-        List<Card> cards = list.stream().sorted(reverseOrder()).collect(toList());
-
+    public Player(String name, List<Card> cards) {
         this.name = name;
         this.cards = cards;
         this.hand = evaluate(cards);

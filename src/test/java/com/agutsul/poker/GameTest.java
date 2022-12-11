@@ -39,7 +39,7 @@ class GameTest {
     void testGameToString() {
         Game game = new Game(123, "2H 2D 4C 5D 6S 2C 3D 2S 6S 5H");
         assertNotNull(game);
-        assertEquals("Game#123\tplayer1: [6♠, 5♦, 4♣, 2❤, 2♦] - One Pair: [2♦ 2❤]\tvs\tplayer2: [6♠, 5❤, 3♦, 2♣, 2♠] - One Pair: [2♣ 2♠]",
+        assertEquals("Game#123\tplayer1: [2❤, 2♦, 4♣, 5♦, 6♠] - One Pair: [2❤ 2♦]\tvs\tplayer2: [2♣, 3♦, 2♠, 6♠, 5❤] - One Pair: [2♠ 2♣]",
                 game.toString());
     }
 

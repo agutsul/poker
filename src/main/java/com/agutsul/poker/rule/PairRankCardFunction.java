@@ -8,7 +8,6 @@ import java.util.Set;
 
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
-import static java.util.Comparator.reverseOrder;
 
 final class PairRankCardFunction extends AbstractRankCardFunction {
 
@@ -27,7 +26,6 @@ final class PairRankCardFunction extends AbstractRankCardFunction {
 
         return matchedFrequency.subList(0, pairs).stream()
                 .flatMap(Collection::stream)
-                .sorted(reverseOrder())
                 .collect(toList());
     }
 }

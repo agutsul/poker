@@ -22,7 +22,7 @@ class PlayerTest {
     @Test
     void testPlayerToString() {
         Player player = new Player("any", createCards());
-        assertEquals("any: [Q♠, 8♠, 5♣, 3♠, 2❤] - Highest Card: [Q♠]", player.toString());
+        assertEquals("any: [3♠, 5♣, 8♠, Q♠, 2❤] - Highest Card: [Q♠]", player.toString());
     }
 
     @Test

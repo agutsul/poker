@@ -28,7 +28,7 @@ public class FileExampleMain {
 
         Map<String, Long> stats =
                 winners.stream().collect(groupingBy(Player::getName, counting()));
-        System.out.println(stats);
+        System.out.println("Statistic: " + stats);
     }
 
 }
