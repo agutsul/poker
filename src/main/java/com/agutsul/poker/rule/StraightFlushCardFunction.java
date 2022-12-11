@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import static com.agutsul.poker.enums.Ranks.*;
-import static java.util.Collections.emptyList;
 import static java.util.EnumSet.range;
 
 class StraightFlushCardFunction implements CardFunction {
@@ -37,11 +36,6 @@ class StraightFlushCardFunction implements CardFunction {
 
     @Override
     public Collection<Card> apply(Collection<Card> cards) {
-        Collection<Card> matchedCards = cardFunction.apply(cards);
-        if (matchedCards.isEmpty()) {
-            return emptyList();
-        }
-
-        return matchedCards;
+        return cardFunction.apply(cards);
     }
 }
