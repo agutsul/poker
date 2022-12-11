@@ -1,15 +1,14 @@
 package com.agutsul.poker;
 
+import com.agutsul.poker.comparator.RankComparator;
 import com.agutsul.poker.enums.Ranks;
 import com.agutsul.poker.enums.Suits;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Card implements Comparable<Card> {
 
-    public static final RankComparator RANK_COMPARATOR = new RankComparator();
-    public static final SuitComparator SUIT_COMPARATOR = new SuitComparator();
+    private static final RankComparator RANK_COMPARATOR = new RankComparator();
 
     private final Suit suit;
     private final Rank rank;
@@ -55,20 +54,5 @@ public class Card implements Comparable<Card> {
     @Override
     public int compareTo(Card card) {
         return RANK_COMPARATOR.compare(rank, card.getRank());
-    }
-
-    private static class RankComparator implements Comparator<Rank> {
-        @Override
-        public int compare(Rank rank1, Rank rank2) {
-            return Integer.compare(rank1.value(), rank2.value());
-        }
-    }
-
-    private static class SuitComparator implements Comparator<Suit> {
-
-        @Override
-        public int compare(Suit suit1, Suit suit2) {
-            return Integer.compare(suit1.value(), suit2.value());
-        }
     }
 }

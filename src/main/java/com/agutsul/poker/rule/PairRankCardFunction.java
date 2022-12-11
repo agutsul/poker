@@ -19,7 +19,7 @@ final class PairRankCardFunction extends AbstractRankCardFunction {
     }
 
     @Override
-    protected Collection<Card> applyMatched(List<Set<Card>> matchedFrequency) {
+    protected Collection<Card> findMatched(List<Set<Card>> matchedFrequency) {
         if (matchedFrequency.size() < pairs) {
             return emptyList();
         }

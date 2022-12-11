@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static java.util.Comparator.reverseOrder;
-import static java.util.stream.Collectors.toList;
-
 public class Player {
     private final String name;
     private final List<Card> cards;

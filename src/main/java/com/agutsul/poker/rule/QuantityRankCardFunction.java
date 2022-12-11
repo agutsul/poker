@@ -15,7 +15,7 @@ final class QuantityRankCardFunction extends AbstractRankCardFunction {
     }
 
     @Override
-    protected Collection<Card> applyMatched(List<Set<Card>> matchedFrequency) {
+    protected Collection<Card> findMatched(List<Set<Card>> matchedFrequency) {
         return matchedFrequency.stream()
                 .flatMap(Collection::stream)
                 .collect(toList());
